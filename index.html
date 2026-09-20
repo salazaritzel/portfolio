@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Itzel Salazar, Fullstack Software Engineer">
+  <title>Itzel Salazar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;500;600;700&family=Monsieur+La+Doulaise&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon-96.png">
+  <link rel="icon" href="assets/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <style>
+    :root {
+      --ink: #1d1d1f;
+      --paper: #f8f7f5;
+      --grey: #545559;
+      --light-gray: #e6e6e6;
+      --max-width: 70rem;
+      --serif: "Times New Roman", Times, serif;
+      --sans: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --mono: "Atkinson Hyperlegible Mono", "SFMono-Regular", Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    html,
+    body {
+      margin: 0;
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    a:focus-visible {
+      outline: 3px solid var(--ink);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -4rem;
+      left: 1rem;
+      z-index: 10;
+      padding: 0.65rem 0.9rem;
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .skip-link:focus { top: 1rem; }
+
+    .shell {
+      width: min(calc(100% - 3rem), var(--max-width));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 1.25rem 0;
+      /* border-bottom: 1px solid var(--light-gray); */
+    }
+
+    .menu-toggle {
+      display: none;
+      padding: 0.4rem 0;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .wordmark {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .site-nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .site-nav { margin-left: auto; }
+
+    .site-nav a {
+      font-size: 0.85rem;
+      text-decoration: none;
+    }
+
+    .site-nav a:hover {
+      text-decoration: underline;
+      text-underline-offset: 0.3em;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      /* min-height: 38rem; */
+      padding: 8rem 0 4rem;
+      scroll-margin-top: 3rem;
+    }
+
+    .hero-script {
+      font-family: "Monsieur La Doulaise", "Brush Script MT", cursive;
+      font-size: clamp(2.3rem, 9vw, 7rem);
+      font-weight: 400;
+      line-height: 0.8;
+    }
+
+    h1, h2, h3 { margin-top: 0; }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      line-height: 1.08;
+    }
+
+    h1 {
+      display: inline;
+      margin: 0;
+      font-size: clamp(2.3rem, 7vw, 6rem);
+    }
+
+    .hero-title { display: flex; align-items: baseline; flex-wrap: nowrap; gap: 0.4rem; margin-bottom: 1.5rem; }
+
+    .hero-subheading {
+      margin-bottom: 1.25rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .hero-body {
+      max-width: 37rem;
+      margin-bottom: 2rem;
+      color: var(--ink);
+      font-size: 1.1rem;
+    }
+
+    .hero-actions,
+    .social-links,
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .hero-actions { margin-bottom: 1.75rem; }
+
+    .button {
+      display: inline-block;
+      padding: 0.7rem 1rem;
+      border: 1px solid var(--ink);
+      font-size: 0.85rem;
+      /* font-weight: 700; */
+      font-family: var(--mono);
+      text-decoration: none;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .social-links { gap: 0.75rem 1.5rem; }
+
+    .social-links a,
+    .contact-links a {
+      font-size: 0.9rem;
+      text-underline-offset: 0.25em;
+    }
+
+    .section {
+      padding: 4rem 0;
+      /* border-top: 1px solid var(--light-gray); */
+      scroll-margin-top: 3rem;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(12rem, 0.65fr) minmax(0, 1.35fr);
+      
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-heading > div:only-child { grid-column: 1 / -1; }
+
+    .section-kicker {
+      margin: 0 0 0.75rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    h2 { margin-bottom: 0; font-size: clamp(1.75rem, 3vw, 2.75rem); }
+
+    .about-section { min-height: 14rem; }
+
+    .project-list,
+    .education-list {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .project,
+    .education-item {
+      display: grid;
+      grid-template-columns: minmax(13rem, 0.55fr) minmax(0, 1.45fr);
+      gap: 3rem;
+      padding: 2.25rem 0;
+      /* border-top: 1px solid var(--light-gray); */
+    }
+
+    .education-item {
+      display: block;
+    }
+
+    .project { display: block; }
+
+    .project:first-child,
+    .education-item:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .project h3,
+    .education-item h3 {
+      margin-bottom: 0.75rem;
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    .education-item h3 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    .project-title {
+      display: block;
+    }
+
+    .project-title .section-kicker {
+      margin: 0 0 0.35rem;
+      font-size: 0.65rem;
+    }
+
+    .project-title h3 { margin-bottom: 0.75rem; }
+
+    .project p,
+    .education-item p { margin-bottom: 1rem; }
+
+    .project p:last-child,
+    .education-item p:last-child { margin-bottom: 0; }
+
+    .tech-list,
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.25rem 0.55rem;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      line-height: 1.3;
+      transition: background-color 150ms ease, color 150ms ease;
+    }
+
+    .tag:hover,
+    .tag:focus-visible {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.6em;
+      margin-top: 1.5rem;
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .project-link-arrow {
+      width: 0.85em;
+      height: 0.85em;
+      flex-shrink: 0;
+      align-self: baseline;
+      position: relative;
+      top: 0.1em;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
+    }
+
+    .skill-category {
+      padding: 1.5rem 1.5rem 1.5rem 0;
+      /* border-top: 1px solid var(--light-gray); */
+    }
+
+    .skill-category:first-child { border-top: 0; }
+
+    .skill-category h3 {
+      margin-bottom: 0.7rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .skills-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .contact-links {
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.75rem;
+      margin: 0;
+    }
+
+    .icon-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem;
+      border: 0;
+      background: transparent;
+      text-decoration: none;
+      line-height: 0;
+    }
+
+    .icon-link img {
+      width: 1.5rem;
+      height: 1.5rem;
+      object-fit: contain;
+    }
+
+    .site-footer {
+      padding: 3rem 0 2.5rem;
+      /* border-top: 1px solid var(--light-gray); */
+      color: var(--ink);
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 700px) {
+      .shell { width: min(calc(100% - 2rem), var(--max-width)); }
+
+      .site-header {
+        position: relative;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .site-nav {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        z-index: 5;
+        padding: 0.75rem 1rem 1rem;
+        /* border-bottom: 1px solid var(--ink); */
+        background: var(--paper);
+      }
+
+      .site-nav[hidden] { display: none; }
+
+      .site-nav ul {
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .hero,
+      .section-heading,
+      .project {
+        grid-template-columns: 1fr;
+      }
+
+      .hero { min-height: 0; gap: 2rem; padding: 2rem 0 4rem; }
+      .section-heading { gap: 1.5rem; }
+      .project { gap: 0.75rem; }
+      .skill-category { padding-right: 0; }
+
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .tag,
+      .icon-link { transition: none; }
+    }
+}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="shell site-header">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">Menu</button>
+    <nav class="site-nav" id="primary-navigation" aria-label="Primary navigation">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="shell hero" id="home" aria-labelledby="hero-title">
+      <div>
+        <div class="hero-title"><span class="hero-script">Hello,</span><h1 id="hero-title">I’m Itzel.</h1></div>
+        <!-- <p class="hero-subheading">Full Stack Software Engineer.</p> -->
+        <p class="hero-body">Software engineer building data-driven products that make complex information usable.</p>
+        <div class="hero-actions">
+          <a class="button" href="#contact">Get in Touch</a>
+          <a class="button" href="Salazar_Itzel_Resume.pdf" download>Download CV</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell section about-section" id="about" aria-labelledby="about-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="about-title">About Me</h2>
+        </div>
+      </div>
+      <p>I’m a software engineer focused on building reliable systems and data-driven products. My interests sit at the intersection of business, 
+        data, technology, and real-world problem solving. I enjoy working across the stack, from designing backend systems to building interfaces 
+        that make complex information easier to understand and use.
+      </p>
+    </section>
+
+    <section class="shell section" id="projects" aria-labelledby="projects-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="projects-title">Projects</h2>
+        </div>
+      </div>
+      <ol class="project-list">
+        <li class="project">
+          <div class="project-title"><p class="section-kicker">01</p><h3>Fashion Data Vault</h3></div>
+          <div>
+            <p>A full-stack trend intelligence platform analyzing over 10,000 RSS articles from five major fashion publications. Built a custom spaCy NLP pipeline — using a hand-curated vocabulary derived from manually analyzing 300+ articles — to extract seasons, brands, materials, and trend patterns that general-purpose models couldn't catch. Designed the full schema and architecture, from ingestion through the live dashboard.</p>
+            <ul class="tech-list" aria-label="Technologies">
+              <li><span class="tag">Python</span></li>
+              <li><span class="tag">Next.js</span></li>
+              <li><span class="tag">TypeScript</span></li>
+              <li><span class="tag">PostgreSQL</span></li>
+              <li><span class="tag">spaCy</span></li>
+              <li><span class="tag">FastAPI</span></li>
+            </ul>
+            <a class="project-link" href="https://github.com/salazaritzel/fashion-data-vault" target="_blank" rel="noopener noreferrer">View More <svg class="project-link-arrow" viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.5" fill="none" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8" /></svg></a>
+          </div>
+        </li>
+        <li class="project">
+          <div class="project-title"><p class="section-kicker">02</p><h3>Rat Brain Atlas Visualization Tool</h3></div>
+          <div>
+            <p>An interactive neuroanatomical mapping prototype built with UTEP neuroscience faculty, continued by student teams each semester. Developed the homepage, region-based navigation, and collaborative note-taking tools for annotating specific brain regions, translating faculty research requirements into a usable digital tool.</p>
+            <ul class="tech-list" aria-label="Technologies">
+              <li><span class="tag">Python</span></li>
+              <li><span class="tag">MongoDB</span></li>
+              <li><span class="tag">Next.js</span></li>
+              <li><span class="tag">TypeScript</span></li>
+              <li><span class="tag">Flask</span></li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="shell section" id="skills" aria-labelledby="skills-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="skills-title">Skills</h2>
+        </div>
+      </div>
+      <ul class="skills-list">
+        <li class="skill-category">
+          <h3>Languages</h3>
+          <ul class="skill-list" aria-label="Languages">
+            <li><span class="tag">Python</span></li><li><span class="tag">Java</span></li><li><span class="tag">TypeScript</span></li><li><span class="tag">SQL</span></li><li><span class="tag">JavaScript</span></li>
+          </ul>
+        </li>
+        <li class="skill-category">
+          <h3>Frameworks &amp; Libraries</h3>
+          <ul class="skill-list" aria-label="Frameworks and Libraries">
+            <li><span class="tag">FastAPI</span></li><li><span class="tag">Next.js</span></li><li><span class="tag">Flask</span></li><li><span class="tag">Tailwind CSS</span></li><li><span class="tag">pandas</span></li><li><span class="tag">psycopg3</span></li>
+          </ul>
+        </li>
+        <li class="skill-category">
+          <h3>Tools &amp; Platforms</h3>
+          <ul class="skill-list" aria-label="Tools and Platforms">
+            <li><span class="tag">Git</span></li><li><span class="tag">Docker</span></li><li><span class="tag">Vercel</span></li><li><span class="tag">Railway</span></li>
+          </ul>
+        </li>
+        <li class="skill-category">
+          <h3>Databases</h3>
+          <ul class="skill-list" aria-label="Databases">
+            <li><span class="tag">PostgreSQL</span></li><li><span class="tag">MongoDB</span></li>
+          </ul>
+        </li>
+        <li class="skill-category">
+          <h3>NLP/ML</h3>
+          <ul class="skill-list" aria-label="NLP and ML">
+            <li><span class="tag">spaCy (EntityRuler, Matcher)</span></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section class="shell section" id="education" aria-labelledby="education-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="education-title">Education</h2>
+        </div>
+      </div>
+      <ul class="education-list">
+        <li class="education-item">
+          <h3>The University of Texas at El Paso</h3>
+          <p>Master of Science in Software Engineering, Secure Cyber Systems — May 2025</p>
+        </li>
+        <li class="education-item">
+          <h3>The University of Texas at El Paso</h3>
+          <p>Bachelor of Business Administration, Operations and Supply Chain Management — Fall 2019</p>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="shell site-footer" id="contact">
+    <ul class="contact-links" aria-label="Contact">
+      <li>
+        <a class="icon-link" href="mailto:salazitzel@gmail.com" aria-label="Send email">
+          <img src="assets/icons8-email-100.png" alt="">
+        </a>
+      </li>
+      <li>
+        <a class="icon-link" href="https://linkedin.com/in/itzel-salazar" aria-label="LinkedIn profile">
+          <img src="assets/icons8-linkedin-100.png" alt="">
+        </a>
+      </li>
+      <li>
+        <a class="icon-link" href="https://github.com/salazaritzel" aria-label="GitHub profile">
+          <img src="assets/icons8-github-100.png" alt="">
+        </a>
+      </li>
+    </ul>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const primaryNavigation = document.querySelector("#primary-navigation");
+    const sections = document.querySelectorAll("main section[id], footer[id]");
+    const navLinks = document.querySelectorAll(".site-nav a");
+
+    function setMenu(open) {
+      menuToggle.setAttribute("aria-expanded", String(open));
+      primaryNavigation.hidden = !open;
+      if (open) {
+        primaryNavigation.querySelector("a").focus();
+      } else {
+        menuToggle.focus();
+      }
+    }
+
+    function syncMenuToViewport() {
+      if (window.matchMedia("(min-width: 701px)").matches) {
+        primaryNavigation.hidden = false;
+        menuToggle.setAttribute("aria-expanded", "false");
+      } else if (menuToggle.getAttribute("aria-expanded") !== "true") {
+        primaryNavigation.hidden = true;
+      }
+    }
+
+    menuToggle.addEventListener("click", () => {
+      setMenu(menuToggle.getAttribute("aria-expanded") !== "true");
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") {
+        setMenu(false);
+      }
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        if (window.matchMedia("(max-width: 700px)").matches) setMenu(false);
+      });
+    });
+
+    window.addEventListener("resize", syncMenuToViewport);
+    syncMenuToViewport();
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach((link) => {
+          link.setAttribute("aria-current", String(link.getAttribute("href") === `#${entry.target.id}`));
+        });
+      });
+    }, { rootMargin: "-25% 0px -65%", threshold: 0 });
+
+    sections.forEach((section) => sectionObserver.observe(section));
+  </script>
+</body>
+</html>
